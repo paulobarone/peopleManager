@@ -2,23 +2,20 @@ package com.peoplemanager.model;
 
 import java.util.ArrayList;
 
-import static com.peoplemanager.utils.GenerateUID.generateUID;
 import static com.peoplemanager.utils.Validates.validateGrades;
 
 public class Student extends People {
-  private final int UID = generateUID();
   private ArrayList<Float> grades;
   private Course course;
 
-  public Student(String name, int age, String gender, ArrayList<Float> grades) {
-    super(name, age, gender);
+  public Student(String name, String birthDate, String gender, ArrayList<Float> grades) {
+    super(name, birthDate, gender);
 
     validateGrades(grades);
 
     this.grades = grades;
   }
 
-  public int getUID() { return UID; }
   public ArrayList<Float> getGrades() { return grades; }
   public Course getCourse() { return course; }
 

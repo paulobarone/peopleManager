@@ -1,38 +1,43 @@
 package com.peoplemanager.model;
-import static com.peoplemanager.utils.Formatter.StringFormatter;
+
+import static com.peoplemanager.utils.Formatter.ageFormatter;
+import static com.peoplemanager.utils.Formatter.stringFormatter;
+import static com.peoplemanager.utils.GenerateUID.generateUID;
 import static com.peoplemanager.utils.Validates.*;
 
 public class People {
+  private final int UID = generateUID();
   private String name;
-  private int age;
+  private final String birthDate;
+  private final int age;
   private String gender;
 
-  public People(String name, int age, String gender) {
+  public People(String name, String birthDate, String gender) {
     validateName(name);
-    validateAge(age);
     validateGender(gender);
+    validateBirthDate(birthDate);
+    int age = ageFormatter(birthDate);
+    validateAge(age);
 
-    this.name = StringFormatter(name);
+    this.name = stringFormatter(name);
+    this.birthDate = birthDate;
     this.age = age;
-    this.gender = StringFormatter(gender);
+    this.gender = stringFormatter(gender);
   }
 
+  public int getUID() { return UID; }
   public String getName() { return name; }
+  public String getBirthDate() { return birthDate; }
   public int getAge() { return age; }
   public String getGender() { return gender; }
 
   public void setName(String name) {
     validateName(name);
-    this.name = StringFormatter(name);
-  }
-
-  public void setAge(int age) {
-    validateAge(age);
-    this.age = age;
+    this.name = stringFormatter(name);
   }
 
   public void setGender(String gender) {
     validateGender(gender);
-    this.gender = StringFormatter(gender);
+    this.gender = stringFormatter(gender);
   }
 }
