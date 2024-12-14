@@ -1,5 +1,6 @@
 package com.peoplemanager.utils;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Validates {
@@ -8,9 +9,9 @@ public class Validates {
       throw new IllegalArgumentException("Nome não pode ser vazio");
     }
 
-    Pattern NAME_PATTERN = Pattern.compile("[a-zA-Z\\s]+");
-    if (!NAME_PATTERN.matcher(name).matches()) {
-      throw new IllegalArgumentException("Nome inválido. O nome deve conter apenas letras e espaços");
+    Pattern NAME_PATTERN = Pattern.compile(".*\\d.*");
+    if (NAME_PATTERN.matcher(name).matches()) {
+      throw new IllegalArgumentException("Nome inválido. O nome não deve conter números");
     }
   }
 
@@ -39,7 +40,7 @@ public class Validates {
     }
   }
 
-  public static void validateGrades(float[] grades) {
+  public static void validateGrades(ArrayList<Float> grades) {
     if (grades == null) {
       throw new IllegalArgumentException("Insira um valor válido para as notas");
     }

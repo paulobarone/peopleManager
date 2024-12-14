@@ -1,30 +1,32 @@
 package com.peoplemanager.model;
 
+import java.util.ArrayList;
+
 import static com.peoplemanager.utils.GenerateUID.generateUID;
-import static com.peoplemanager.utils.Validates.validateCourse;
 import static com.peoplemanager.utils.Validates.validateGrades;
 
 public class Student extends People {
   private final int UID = generateUID();
-  private String course;
-  private float[] grades;
+  private ArrayList<Float> grades;
+  private Course course;
 
-  public Student(String name, int age, String gender, String course, float[] grades) {
+  public Student(String name, int age, String gender, ArrayList<Float> grades) {
     super(name, age, gender);
 
-    validateCourse(course);
     validateGrades(grades);
 
-    this.course = course;
     this.grades = grades;
   }
 
   public int getUID() { return UID; }
-  public String getCourse() { return course; }
-  public float[] getGrades() { return grades; }
+  public ArrayList<Float> getGrades() { return grades; }
+  public Course getCourse() { return course; }
 
-  public void setCourse(String course) { this.course = course; }
-  public void setGrades(float[] grades) { this.grades = grades; }
+  public void setGrades(ArrayList<Float> grades) { this.grades = grades; }
+
+  public void addGrade(float grade) {
+    grades.add(grade);
+  }
 
   public float getAverage() {
     float sum = 0;
@@ -32,6 +34,11 @@ public class Student extends People {
       sum += grade;
     }
 
-    return sum / grades.length;
+    float average = sum / grades.size();
+    return (float) (Math.ceil(average * 2) / 2);
+  }
+
+  public void setCourse(Course course) {
+    this.course = course;
   }
 }
