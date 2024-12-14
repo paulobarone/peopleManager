@@ -1,9 +1,11 @@
 package com.peoplemanager.model;
 
+import static com.peoplemanager.utils.GenerateUID.generateUID;
 import static com.peoplemanager.utils.Validates.validateCourse;
 import static com.peoplemanager.utils.Validates.validateGrades;
 
 public class Student extends People {
+  private final int UID = generateUID();
   private String course;
   private float[] grades;
 
@@ -17,6 +19,7 @@ public class Student extends People {
     this.grades = grades;
   }
 
+  public int getUID() { return UID; }
   public String getCourse() { return course; }
   public float[] getGrades() { return grades; }
 
