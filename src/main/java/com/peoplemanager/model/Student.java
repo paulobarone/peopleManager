@@ -1,5 +1,8 @@
 package com.peoplemanager.model;
 
+import static com.peoplemanager.utils.Validates.validateCourse;
+import static com.peoplemanager.utils.Validates.validateGrades;
+
 public class Student extends People {
   private String course;
   private float[] grades;
@@ -27,23 +30,5 @@ public class Student extends People {
     }
 
     return sum / grades.length;
-  }
-
-  private void validateCourse(String course) {
-    if (course == null || course.isEmpty()) {
-      throw new IllegalArgumentException("O aluno precisa estar em um curso");
-    }
-  }
-
-  private void validateGrades(float[] grades) {
-    if (grades == null) {
-      throw new IllegalArgumentException("Insira um valor válido para as notas");
-    }
-
-    for (float grade : grades) {
-      if (grade < 0 || grade > 10) {
-        throw new IllegalArgumentException("Nota inválida. A nota deve ser maior ou igual a 0 e menor ou igual a 10");
-      }
-    }
   }
 }
