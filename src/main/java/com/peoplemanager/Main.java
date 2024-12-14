@@ -16,6 +16,7 @@ public class Main {
       for(int i = 0; i < student.getGrades().length; i++) {
         System.out.println("Nota " + (i + 1) + ": " + student.getGrades()[i]);
       }
+      System.out.println("Média: " + student.getAverage());
     } catch(IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }

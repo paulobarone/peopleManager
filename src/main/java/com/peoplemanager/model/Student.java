@@ -20,6 +20,15 @@ public class Student extends People {
   public void setCourse(String course) { this.course = course; }
   public void setGrades(float[] grades) { this.grades = grades; }
 
+  public float getAverage() {
+    float sum = 0;
+    for (float grade : grades) {
+      sum += grade;
+    }
+
+    return sum / grades.length;
+  }
+
   private void validateCourse(String course) {
     if (course == null || course.isEmpty()) {
       throw new IllegalArgumentException("O aluno precisa estar em um curso");
